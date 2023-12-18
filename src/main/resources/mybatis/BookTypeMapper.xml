@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.desmond.bms.dao.BookTypeDao">
+    <resultMap id="BaseResultMap"  type="com.desmond.bms.bean.BookType" >
+        <result column="id" property="id"  jdbcType="VARCHAR" />
+        <result column="type_name" property="typeName"  jdbcType="VARCHAR" />
+        <result column="description" property="description"  jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM book_type
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM book_type WHERE id = #{id}
+    </select>
+
+    <insert id="save">
+        INSERT INTO book_type (id, type_name, description)
+        VALUES (#{id}, #{typeName}, #{description})
+    </insert>
+
+    <update id="update">
+        UPDATE book_type
+        SET type_name = #{typeName}, description = #{description}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM book_type WHERE id = #{id}
+    </delete>
+</mapper>

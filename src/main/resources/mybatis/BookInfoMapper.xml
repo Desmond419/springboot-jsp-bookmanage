@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.desmond.bms.dao.BookInfoDao">
+    <resultMap id="BaseResultMap"  type="com.desmond.bms.bean.BookInfo" >
+        <result column="id" property="id"  jdbcType="VARCHAR" />
+        <result column="book_type_id" property="bookTypeId"  jdbcType="VARCHAR" />
+        <result column="bookTypeName" property="bookTypeName"  jdbcType="VARCHAR" />
+        <result column="name" property="name"  jdbcType="VARCHAR" />
+        <result column="author" property="author"  jdbcType="VARCHAR" />
+        <result column="price" property="price"  jdbcType="VARCHAR" />
+        <result column="description" property="description"  jdbcType="VARCHAR" />
+        <result column="isBorrow" property="isBorrow"  jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select id, book_type_id, name, author, price,description, isBorrow,
+            (select type_name from book_type where book_type.id = book_info.book_type_id) as bookTypeName
+        from book_info
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM book_info WHERE id = #{id}
+    </select>
+
+    <select id="findBySearch" resultMap="BaseResultMap">
+        SELECT
+        id, book_type_id, name, author, price, description, isBorrow,
+        (SELECT type_name FROM book_type WHERE book_type.id = book_info.book_type_id) AS bookTypeName
+        FROM
+        book_info
+        WHERE
+        name LIKE CONCAT('%', #{keyword}, '%') OR author LIKE CONCAT('%', #{keyword}, '%');
+
+        <!--        where name like '%#{keyword}%' or author like '%#{keyword}%'-->
+    </select>
+
+    <insert id="save">
+        INSERT INTO book_info (id, book_type_id, name, author, price, description, isBorrow)
+        VALUES (#{id}, #{bookTypeId}, #{name}, #{author}, #{price}, #{description}, #{isBorrow})
+    </insert>
+
+    <update id="update">
+        UPDATE book_info
+        SET book_type_id = #{bookTypeId}, name = #{name}, author = #{author},
+        price = #{price}, description = #{description}, isBorrow = #{isBorrow}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM book_info WHERE id = #{id}
+    </delete>
+
+</mapper>

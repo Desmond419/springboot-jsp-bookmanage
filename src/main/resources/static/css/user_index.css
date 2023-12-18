@@ -1,0 +1,98 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.container {
+    margin-top: 30px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout-btn {
+    color: #ffffff;
+    background-color: #dc3545;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.search-bar {
+    margin-top: 20px;
+}
+
+.search-bar input {
+    padding: 8px;
+    width: 200px;
+}
+
+.search-bar button {
+    margin-left: 10px;
+}
+
+.book-list,
+.borrowed-books {
+    margin-top: 10px;
+}
+
+.book-list ul,
+.borrowed-books ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.book-list h3,
+.borrowed-books h3 {
+    color: #007bff;
+}
+
+.book-list li,
+.borrowed-books li {
+    padding: 0px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.book-list li:last-child,
+.borrowed-books li:last-child {
+    border-bottom: none;
+}
+
+.action-btn {
+    margin-top: -7px; /* 负值表示上移 */
+}
+
+/* 样式可以根据需要调整，使 modal 更符合你的页面设计风格 */
+.modal-content {
+    border-radius: 1; /* 可以根据需要调整 modal 的圆角 */
+}
+
+.modal-header {
+    background-color: MediumSeaGreen; /* 根据需要调整 modal 头部的背景颜色 */
+    color: #ffffff;
+}
+
+.modal-footer {
+    background-color: #f8f9fa; /* 根据需要调整 modal 底部的背景颜色 */
+}
+
+.textLimit {
+    white-space: nowrap;         /* 不换行 */
+    overflow: hidden;            /* 隐藏溢出部分 */
+    text-overflow: ellipsis;     /* 使用省略号表示溢出 */
+    max-width: 150px;            /* 设置最大宽度，根据实际需求调整 */
+}
+
+/* 鼠标悬停时显示全部文本 */
+.textLimit:hover {
+    white-space: normal;         /* 允许换行 */
+    overflow: visible;           /* 显示全部文本 */
+    text-overflow: unset;        /* 不使用省略号 */
+}
